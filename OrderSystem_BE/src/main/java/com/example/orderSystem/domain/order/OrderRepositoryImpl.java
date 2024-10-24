@@ -21,11 +21,12 @@ public class OrderRepositoryImpl implements OrderRepository{
     @Override
     public void save(OrderCreateRequestDto dto) {
         Order order = Order.builder()
+                .id(ID)
                 .name(dto.getName())
-                .price(dto.getPrice())
+                .quantity(dto.getQuantity())
                 .build();
 
+        ORDERS.put(order.getId(),order);
         ID++;
-        ORDERS.put(ID,order);
     }
 }

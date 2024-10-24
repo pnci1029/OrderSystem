@@ -16,4 +16,9 @@ public class OrderController {
         return Response.ok();
     }
 
+    @GetMapping("/order")
+    public Response<?> getOrders() {
+        ;
+        return Response.ok(orderService.getOrders());
+    }
 }
