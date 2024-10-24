@@ -7,6 +7,7 @@ import {Provider} from 'react-redux';
 import {store} from "./slice";
 import {Main} from "./components/common/Main";
 import App from "./App";
+import {CreateOrder} from "./components/order/CreateOrder";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);
@@ -18,6 +19,7 @@ root.render(
                 <Routes>
                     <Route path="/" element={<App/>}>
                         <Route path="" element={<Main/>} />
+                        <Route path="order/post" element={<CreateOrder/>} />
                     </Route>
                 </Routes>
             </BrowserRouter>
