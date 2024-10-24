@@ -3,6 +3,6 @@ import {MainApi} from "./MainApi";
 export class OrderApi {
     static baseUrl = `${MainApi.urlPrefix}`;
 
-    static getItems = (category:string) => () =>
+    static getMenus = (category:string) => () =>
         MainApi.api.post(`${OrderApi.baseUrl}/category&=${category}`);
 }
