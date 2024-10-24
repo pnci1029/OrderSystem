@@ -12,12 +12,11 @@ export function useOrderGetter() {
             return result;
         } catch (e) {
             console.log('error message : ', e)
-        }finally {
         }
-
         // eslint-disable-next-line
     }, []);
-    return{
+
+    return {
         getMenu
     }
 }
