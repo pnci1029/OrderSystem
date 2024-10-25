@@ -1,3 +1,4 @@
+// 주문 생성
 .orderTitleWrapper{
   display: flex;
   justify-content: center;
@@ -63,4 +64,28 @@
   gap: 10px;
   color: #f1f4f8;
   background: var(--K-PASS-KPblue-500_main, #583be2);
+}
+
+// 주문 조회
+.ordersWrapper{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  justify-content: center;
+}
+
+.ordersWrapper .orderItems{
+  background-color: #f1f4f8;
+  border-radius: 20px;
+  box-shadow: 0 12px 20px #0000001a;
+  padding: 60px;
+  transition: transform .3s, box-shadow .3s;
+  width: 380px;
+
+  >.text{
+    color: #0072b3;
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
 }
