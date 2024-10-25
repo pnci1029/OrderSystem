@@ -1,5 +1,6 @@
 package com.example.orderSystem.domain.order;
 
+import com.example.orderSystem.api.order.dto.OrderCreateRequestDto;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -11,4 +12,10 @@ public class Order {
     private int quantity;
 
 
+    public static Order of(OrderCreateRequestDto dto) {
+        return Order.builder()
+                .name(dto.getName())
+                .quantity(dto.getQuantity())
+                .build();
+    }
 }

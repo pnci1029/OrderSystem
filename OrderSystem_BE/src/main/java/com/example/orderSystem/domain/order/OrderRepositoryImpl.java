@@ -1,6 +1,5 @@
 package com.example.orderSystem.domain.order;
 
-import com.example.orderSystem.api.order.dto.OrderCreateRequestDto;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -19,14 +18,20 @@ public class OrderRepositoryImpl implements OrderRepository{
     }
 
     @Override
-    public void save(OrderCreateRequestDto dto) {
+    public Order save(Order dto) {
         Order order = Order.builder()
-                .id(ID)
+                .id(ID++)
                 .name(dto.getName())
                 .quantity(dto.getQuantity())
                 .build();
 
         ORDERS.put(order.getId(),order);
-        ID++;
+
+        return order;
+    }
+
+    @Override
+    public void deleteAll() {
+        ORDERS = new HashMap<>();
     }
 }
