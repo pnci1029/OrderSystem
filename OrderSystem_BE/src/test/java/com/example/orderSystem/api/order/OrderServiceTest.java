@@ -27,7 +27,7 @@ class OrderServiceTest {
 
     @DisplayName("메뉴와 수량을 요청 받아 DB에 저장한다.")
     @Test
-    void createOrder() {
+    void createOrderServiceTest() {
         // given
         String name = "탕수육";
         int quantity = 2;
