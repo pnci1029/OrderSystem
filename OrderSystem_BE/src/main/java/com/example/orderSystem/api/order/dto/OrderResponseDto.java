@@ -1,6 +1,7 @@
 package com.example.orderSystem.api.order.dto;
 
 import com.example.orderSystem.domain.order.Order;
+import com.example.orderSystem.domain.order.Status;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -8,6 +9,7 @@ import lombok.Getter;
 public class OrderResponseDto {
     private Long id;
     private String name;
+    private Status status;
     private int quantity;
 
 
@@ -16,6 +18,7 @@ public class OrderResponseDto {
                 .id(order.getId())
                 .name(order.getName())
                 .quantity(order.getQuantity())
+                .status(order.getStatus())
                 .build();
     }
 

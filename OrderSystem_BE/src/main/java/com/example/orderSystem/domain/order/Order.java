@@ -9,6 +9,7 @@ public class Order {
 
     private Long id;
     private String name;
+    private Status status;
     private int quantity;
 
 
@@ -16,6 +17,7 @@ public class Order {
         return Order.builder()
                 .name(dto.getName())
                 .quantity(dto.getQuantity())
+                .status(Status.RECEIVED)
                 .build();
     }
 }
