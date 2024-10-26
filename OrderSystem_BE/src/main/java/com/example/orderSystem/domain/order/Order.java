@@ -1,10 +1,11 @@
 package com.example.orderSystem.domain.order;
 
 import com.example.orderSystem.api.order.dto.OrderCreateRequestDto;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
-@Getter @Builder
+@Getter @Builder @AllArgsConstructor
 public class Order {
 
     private Long id;

@@ -1,10 +1,11 @@
 package com.example.orderSystem.api.order.dto;
 
-import com.example.orderSystem.domain.order.Status;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-@Getter @Builder
+@Getter @Builder @NoArgsConstructor @AllArgsConstructor
 public class OrderCreateRequestDto {
     private String name;
     private int quantity;
