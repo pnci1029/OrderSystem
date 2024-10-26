@@ -10,11 +10,6 @@ public class OrderController {
 
     private final OrderService orderService;
 
-    @GetMapping("/order")
-    public Response<?> getOrders() {
-        return Response.ok(orderService.getOrders());
-    }
-
     @PostMapping("/order")
     public Response<?> createOrder(@RequestBody OrderCreateRequestDto dto) {
         return Response.ok(orderService.createOrder(dto));
@@ -23,5 +18,10 @@ public class OrderController {
     @PatchMapping("/order")
     public Response<?> updateOrder(@RequestParam Long orderId) {
         return Response.ok(orderService.updateOrder(orderId));
+    }
+
+    @GetMapping("/order")
+    public Response<?> getOrders() {
+        return Response.ok(orderService.getOrders());
     }
 }
