@@ -8,6 +8,8 @@ public interface OrderRepository {
 
     Order save(Order dto);
 
+    Order updateOrder(Long orderId);
+
     void deleteAll();
     
 }

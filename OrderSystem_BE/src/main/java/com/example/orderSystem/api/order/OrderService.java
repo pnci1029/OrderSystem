@@ -7,6 +7,7 @@ import com.example.orderSystem.domain.order.OrderRepository;
 import com.example.orderSystem.util.OrderWebSocketHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -15,16 +16,26 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final OrderWebSocketHandler orderWebSocketHandler;
 
+    @Transactional
     public OrderResponseDto createOrder(OrderCreateRequestDto dto) {
         // 요청 정보 저장
         Order order = orderRepository.save(Order.of(dto));
 
         // 웹소켓 발행
         List<Order> result = orderRepository.findAll();
-        System.out.println("result.size() = " + result.size());
         orderWebSocketHandler.broadcastOrder(result);
 
         // DTO로 응답
         return OrderResponseDto.of(order);
+    }
+
+    @Transactional
+    public OrderResponseDto updateOrder(Long orderId) {
+        Order order = orderRepository.updateOrder(orderId);
+        return OrderResponseDto.of(order);
+    }
+
+    public List<Order> getOrders() {
+        return orderRepository.findAll();
     }
 }
