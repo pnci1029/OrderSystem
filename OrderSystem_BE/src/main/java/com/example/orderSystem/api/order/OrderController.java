@@ -20,7 +20,7 @@ public class OrderController {
         return Response.ok(orderService.createOrder(dto));
     }
 
-    @PutMapping("/order")
+    @PatchMapping("/order")
     public Response<?> processOrder(@RequestParam Long orderId) {
         return Response.ok(orderService.updateOrder(orderId));
     }

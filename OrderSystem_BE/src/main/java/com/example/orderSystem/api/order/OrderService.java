@@ -32,6 +32,9 @@ public class OrderService {
     @Transactional
     public OrderResponseDto updateOrder(Long orderId) {
         Order order = orderRepository.updateOrder(orderId);
+
+        List<Order> result = orderRepository.findAll();
+        orderWebSocketHandler.broadcastOrder(result);
         return OrderResponseDto.of(order);
     }
 
