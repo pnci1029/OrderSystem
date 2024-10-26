@@ -21,7 +21,7 @@ public class OrderController {
     }
 
     @PatchMapping("/order")
-    public Response<?> processOrder(@RequestParam Long orderId) {
+    public Response<?> updateOrder(@RequestParam Long orderId) {
         return Response.ok(orderService.updateOrder(orderId));
     }
 }

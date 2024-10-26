@@ -46,6 +46,29 @@ class OrderControllerTest {
                 .andExpect(jsonPath("$.httpStatus").value("OK"))
                 .andExpect(jsonPath("$.message").value("OK"))
         ;
+    }
 
+    @DisplayName("요청받은 식별자에 대한 주문 상태를 업데이트합니다.")
+    @Test
+    void updateOrderControllerTest() throws Exception {
+        // given
+        int orderId = 0;
+
+        OrderCreateRequestDto request = OrderCreateRequestDto.builder()
+                .name("탕수육")
+                .quantity(2)
+                .build();
+
+        orderService.createOrder(request);
+
+        // when then
+        mockMvc.perform(MockMvcRequestBuilders.patch("/api/order")
+                        .param("orderId", String.valueOf(orderId))
+                        .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.httpStatus").value("OK"))
+                .andExpect(jsonPath("$.message").value("OK"));
     }
 }
