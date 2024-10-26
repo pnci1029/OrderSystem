@@ -7,9 +7,7 @@ export function useOrderGetter() {
 
     const getMenu = useCallback(async () => {
         try {
-            const result: any = await dispatch(getMenus("gg")).unwrap();
-
-            return result;
+            return await dispatch(getMenus("gg")).unwrap();
         } catch (e) {
             console.log('error message : ', e)
         }

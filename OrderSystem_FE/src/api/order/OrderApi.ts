@@ -9,4 +9,7 @@ export class OrderApi {
 
     static createOrder = (order:OrderCreateRequestDto) => () =>
         MainApi.api.post(`${OrderApi.baseUrl}/order`, order);
+
+    static updateOrder = (orderId: number) => () =>
+        MainApi.api.patch(`${OrderApi.baseUrl}/order?orderId=${orderId}`);
 }

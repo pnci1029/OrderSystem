@@ -10,3 +10,6 @@ export const getMenus = createAsyncThunk("order/getMenus",
 export const createOrder = createAsyncThunk("order/createOrder",
     (order:OrderCreateRequestDto) => executePromise(OrderApi.createOrder(order))
 );
+export const updateOrder = createAsyncThunk("order/updateOrder",
+    (orderId:number) => executePromise(OrderApi.updateOrder(orderId))
+);
