@@ -23,6 +23,7 @@ public class OrderRepositoryImpl implements OrderRepository{
                 .id(ID++)
                 .name(dto.getName())
                 .quantity(dto.getQuantity())
+                .status(dto.getStatus())
                 .build();
 
         ORDERS.put(order.getId(),order);
@@ -31,7 +32,38 @@ public class OrderRepositoryImpl implements OrderRepository{
     }
 
     @Override
+    public Order updateOrder(Long orderId) {
+        Order order = ORDERS.get(orderId);
+
+        Order updatedOrder = updateStatus(order);
+
+        ORDERS.put(orderId, updatedOrder);
+        return updatedOrder;
+    }
+
+    @Override
     public void deleteAll() {
         ORDERS = new HashMap<>();
     }
+
+    private Order updateStatus(Order order) {
+
+        Status newStatus = switch (order.getStatus()) {
+            case RECEIVED -> Status.PROCESSING;
+            case PROCESSING -> Status.FINISHED;
+            default -> order.getStatus();
+        };
+
+        if(order.getStatus() == newStatus) {
+            return order;
+        }
+
+        return Order.builder()
+                .id(order.getId())
+                .name(order.getName())
+                .quantity(order.getQuantity())
+                .status(newStatus)
+                .build();
+    }
+
 }
