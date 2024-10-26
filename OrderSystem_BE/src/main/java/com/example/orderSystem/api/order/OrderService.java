@@ -22,8 +22,7 @@ public class OrderService {
         Order order = orderRepository.save(Order.of(dto));
 
         // 웹소켓 발행
-        List<Order> result = orderRepository.findAll();
-        orderWebSocketHandler.broadcastOrder(result);
+        responseWebsocket();
 
         // DTO로 응답
         return OrderResponseDto.of(order);
@@ -32,13 +31,19 @@ public class OrderService {
     @Transactional
     public OrderResponseDto updateOrder(Long orderId) {
         Order order = orderRepository.updateOrder(orderId);
+        responseWebsocket();
 
-        List<Order> result = orderRepository.findAll();
-        orderWebSocketHandler.broadcastOrder(result);
         return OrderResponseDto.of(order);
     }
 
+    @Deprecated
     public List<Order> getOrders() {
         return orderRepository.findAll();
+    }
+
+    // 전체 주문 조회 후 메시지 전송
+    private void responseWebsocket() {
+        List<Order> result = orderRepository.findAll();
+        orderWebSocketHandler.broadcastOrder(result);
     }
 }
